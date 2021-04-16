@@ -1,0 +1,10 @@
+.idea
+node_modules
+dist
+.vscode/launch.json
+.vscode/extensions.json
+.vscode/settings.json
+docs
+package-lock.json
+coverage
+multi_prject_backup
