@@ -1,0 +1,74 @@
+.bk-login-register-dialog {
+  position: absolute;
+  background-color: #fff;
+  width: 320px;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  padding: 17px;
+}
+
+.bk-login-register-dialog:focus {
+  outline: none;
+}
+
+.bk-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+}
+
+.bk-login-register-dialog .bk-lr-tabs {
+  box-shadow: none;
+}
+
+.bk-login-register-dialog .bk-lr-tabs .MuiTabs-root-64 button {
+  width: 50%;
+  color: grey;
+}
+.bk-login-register-dialog .bk-lr-tabs .MuiTabs-root-64 button[aria-selected="true"] {
+  color: black;
+}
+
+
+.bk-login-register-dialog .bk-lr-tabs .MuiTabs-root-64 .MuiPrivateTabIndicator-colorPrimary-86 {
+  background-color: #ff0047;
+}
+
+.tab-section {
+  padding: 40px;
+}
+
+.tab-section .formControl {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.bk-lr-actions {
+  margin-top: 50px;
+  position: relative;
+}
+
+.bk-lr-actions.edited {
+  margin-top: 20px;
+}
+
+.bk-lr-actions .bk-login {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.registration-success {
+  color: #3d3d3d;
+}
+
+.bk-lr-error .red {
+  color: #ff3437;
+}

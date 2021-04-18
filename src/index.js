@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import 'typeface-roboto';
 import registerServiceWorker from './registerServiceWorker';
-import Controller from './screens/Controller';
+import Home from './screens/home/Home';
+import { hydrateLocalStorage } from './common/services/localStorageService';
 
-ReactDOM.render(<Controller />, document.getElementById('root'));
+hydrateLocalStorage();
+ReactDOM.render(<Home />, document.getElementById('root'));
 registerServiceWorker();

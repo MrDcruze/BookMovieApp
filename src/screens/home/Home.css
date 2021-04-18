@@ -1,0 +1,39 @@
+.bk-home .bk-upcoming-movies .bk-um-header{
+  background-color: #ff9999;
+  padding: 8px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.bk-um-list, .bk-movies-content {
+  display: flex;
+  overflow: hidden;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: #fff;
+}
+
+.bk-movies-content .grid-list li {
+  padding: 20px !important;
+}
+
+.bk-um-list .grid-list {
+  flex-wrap: nowrap;
+  transform: translateZ(0);
+}
+
+.bk-home .bk-movies-list {
+ display: flex;
+}
+
+.bk-home .bk-movies-list .bk-movies-content {
+  max-width: 76%;
+}
+.bk-home .bk-movies-list .bk-movies-filter {
+  max-width: 24%;
+}
+
+.title-bar {
+  background:
+    'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+}

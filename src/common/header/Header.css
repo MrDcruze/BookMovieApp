@@ -1,0 +1,28 @@
+.bk-header {
+  background-color: #222;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 32px 8px 16px;
+
+}
+
+.bk-header .bk-company-logo {
+  height: 35px;
+  background-color: #ff7f7f;
+  animation: rotation 8s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.bk-header .bk-book-show {
+  margin-right: 5px;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
