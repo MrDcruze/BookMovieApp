@@ -16,6 +16,7 @@
 }
 
 .bk-overlay {
+  background-color: rgb(128,128,128, 0.6) !important;
   position: fixed;
   top: 0;
   left: 0;
@@ -69,6 +70,6 @@
   color: #3d3d3d;
 }
 
-.bk-lr-error .red {
+.bk-lr-error .red, .tab-section .login-failure {
   color: #ff3437;
 }

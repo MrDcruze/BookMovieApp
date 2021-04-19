@@ -3,15 +3,13 @@ import './Header.css';
 import CompanyLogo from '../../assets/logo.svg';
 import Button from '@material-ui/core/Button';
 import Login from './../login/Login';
+import { useHistory, history } from 'react-router-dom';
 import { getAuthToken } from './../services/localStorageService';
 
 const Header = (props) => {
+  let history = useHistory();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginDialogOpen, setLoginDialogOpen] = useState(false);
-
-  const navToBookShow = () => {
-    console.log('Navigate to book show page');
-  };
 
   const toggleLogin = () => {
     setLoginDialogOpen(!loginDialogOpen);
@@ -19,7 +17,8 @@ const Header = (props) => {
 
   const handleBookShowClick = () => {
     if (isLoggedIn) {
-      navToBookShow();
+      //Navigate to book show page'
+      history.push('/book-show');
     } else {
       toggleLogin();
     }
@@ -58,7 +57,14 @@ const Header = (props) => {
 
   return (
     <div className="bk-header">
-      <img className="bk-company-logo" src={CompanyLogo} alt="Company Logo" />
+      <img
+        className="bk-company-logo"
+        src={CompanyLogo}
+        alt="Company Logo"
+        onClick={() => {
+          history.push('/');
+        }}
+      />
       <div>
         <Button
           className="bk-book-show"

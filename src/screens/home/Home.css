@@ -13,13 +13,26 @@
   background-color: #fff;
 }
 
-.bk-movies-content .grid-list li {
-  padding: 20px !important;
+.bk-movies-list .grid-list {
+  flex: auto;
 }
+.bk-movies-content .grid-list li {
+  padding: 10px !important;
+}
+
+.bk-movies-content .grid-list li img{
+  cursor: pointer;
+}
+
 
 .bk-um-list .grid-list {
   flex-wrap: nowrap;
   transform: translateZ(0);
+  width: 100%;
+}
+
+.bk-um-list .grid-list .movie-title .MuiGridListTile-tile-91 {
+  cursor: pointer;
 }
 
 .bk-home .bk-movies-list {
@@ -27,10 +40,12 @@
 }
 
 .bk-home .bk-movies-list .bk-movies-content {
-  max-width: 76%;
+  width: 76%;
+  margin: 16px;
 }
 .bk-home .bk-movies-list .bk-movies-filter {
-  max-width: 24%;
+  width: 24%;
+  margin: 16px;
 }
 
 .title-bar {

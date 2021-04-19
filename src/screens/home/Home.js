@@ -5,9 +5,7 @@ import { getAuthToken } from './../../common/services/localStorageService';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridList from '@material-ui/core/GridList';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
+import Filters from './filters/Filters';
 
 class Home extends Component {
   constructor() {
@@ -18,8 +16,14 @@ class Home extends Component {
       moviesCount: 0,
     };
   }
-  getMovies = (page, limit, isUpComing) => {
-    fetch('api/v1/movies?page=' + page + '&limit=' + limit, {
+  getMovies = (page, limit, isUpComing, customFilter) => {
+    let url = 'api/v1/movies?page=' + page + '&limit=' + limit;
+    if (customFilter && Object.keys(customFilter).length) {
+      for (const key of Object.keys(customFilter)) {
+        url += '&' + key + '=' + customFilter[key];
+      }
+    }
+    fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -72,7 +76,12 @@ class Home extends Component {
     );
   };
 
+  filterMovies = (filterObject) => {
+    this.getMovies(1, 10, false, filterObject);
+  };
+
   render() {
+    // const classes = useStyles();
     return (
       <div className="bk-home">
         <Header baseUrl={this.props.baseUrl} />
@@ -95,16 +104,7 @@ class Home extends Component {
             </GridList>
           </div>
           <div className="bk-movies-filter">
-            <form>
-              <FormControl className="formControl">
-                <InputLabel htmlFor="movieName">Movie Name</InputLabel>
-                <Input
-                  id="movieName"
-                  // value={userName}
-                  // onChange={(e) => setUserName(e.target.value)}
-                />
-              </FormControl>
-            </form>
+            <Filters applyFilter={this.filterMovies} />
           </div>
         </div>
       </div>

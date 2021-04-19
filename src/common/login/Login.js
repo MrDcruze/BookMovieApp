@@ -20,6 +20,7 @@ const Login = (props) => {
   const [loginSubmitted, setLoginSubmitted] = useState(false);
   const [registerSubmitted, setRegisterSubmitted] = useState(false);
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [loginFailure, setLoginFailure] = useState('');
   const defaultRegisterState = {
     first_name: '',
     last_name: '',
@@ -33,7 +34,10 @@ const Login = (props) => {
     setLoginSubmitted(false);
     setRegisterSubmitted(false);
     setRegisterDetails(defaultRegisterState);
-    registrationSuccess(false);
+    setRegistrationSuccess(false);
+    setLoginFailure('');
+    setUserName('');
+    setPassword('');
   };
   const a11yProps = (index) => {
     return {
@@ -59,14 +63,23 @@ const Login = (props) => {
     })
       .then((response) => {
         setAuthToken(response.headers.get('access-token'));
-        response.json();
+        if (response.ok) {
+          return response.json();
+        } else {
+          setLoginFailure(response['statusText']);
+          throw new Error(response);
+        }
       })
       .then((response) => {
+        setLoginFailure('');
         if (response && response['status'] === 'ACTIVE') {
           const userDetails = response;
           loggedInHandler(true);
           closeLogin();
         }
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -98,7 +111,14 @@ const Login = (props) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </FormControl>
-        <div className="bk-lr-actions">
+        {loginFailure ? (
+          <FormHelperText className="login-failure">
+            Invalid credentials
+          </FormHelperText>
+        ) : (
+          ''
+        )}
+        <div className={'bk-lr-actions ' + (loginFailure ? 'edited' : '')}>
           <Button
             className="bk-login"
             variant="contained"
