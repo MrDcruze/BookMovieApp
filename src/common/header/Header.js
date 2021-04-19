@@ -4,7 +4,10 @@ import CompanyLogo from '../../assets/logo.svg';
 import Button from '@material-ui/core/Button';
 import Login from './../login/Login';
 import { useHistory, history, useParams } from 'react-router-dom';
-import { getAuthToken } from './../services/localStorageService';
+import {
+  getAuthToken,
+  clearLocalStorage,
+} from './../services/localStorageService';
 
 const Header = (props) => {
   let history = useHistory();
@@ -37,13 +40,12 @@ const Header = (props) => {
         Authorization: 'Bearer ' + getAuthToken(),
       },
       body: {},
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        if (response) {
-          console.log(response);
-        }
-      });
+    }).then((response) => {
+      if (response['ok']) {
+        setIsLoggedIn(false);
+        clearLocalStorage();
+      }
+    });
   };
 
   const loggedInHandler = (isLoggedIn) => {
