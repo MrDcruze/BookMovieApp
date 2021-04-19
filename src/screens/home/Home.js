@@ -25,6 +25,9 @@ class Home extends Component {
 
   getMovies = (page, limit, isUpComing, customFilter) => {
     let url = 'api/v1/movies?page=' + page + '&limit=' + limit;
+    if (isUpComing) {
+      url += '&sort=RELEASE_DATE';
+    }
     if (customFilter && Object.keys(customFilter).length) {
       for (const key of Object.keys(customFilter)) {
         url += '&' + key + '=' + customFilter[key];
@@ -69,7 +72,7 @@ class Home extends Component {
               rows={1.37}
               onClick={() => this.navigateToMovieDetails(tile['id'])}
             >
-              <img src={tile.poster_url} alt="movie poster" />
+              <img src={tile.poster_url} alt={tile.title + ' Poster'} />
               <GridListTileBar
                 title={tile.title}
                 classes={{

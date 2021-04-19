@@ -110,7 +110,9 @@ const MovieDetails = (props) => {
                   )}
                 </span>
                 <span>
-                  {movieDetails['storyline'] ? movieDetails['storyline'] : 'N/A'}
+                  {movieDetails['storyline']
+                    ? movieDetails['storyline']
+                    : 'N/A'}
                 </span>
               </Typography>
               <Typography className="movie-div trailer" variant="body1">
