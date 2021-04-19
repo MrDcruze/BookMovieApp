@@ -17,17 +17,17 @@ const App = () => {
         />
         <Route
           exact
-          path="/book-show"
+          path="/bookshow/:id"
           render={(props) => <BookShow {...props} baseUrl={baseUrl} />}
         />
         <Route
           exact
-          path="/movie-details/:movieId"
+          path="/movie/:movieId"
           render={(props) => <MovieDetails {...props} baseUrl={baseUrl} />}
         />
         <Route
           exact
-          path="/confirm/:movieId"
+          path="/confirm/:id"
           render={(props) => <Confirmation {...props} baseUrl={baseUrl} />}
         />
       </Switch>

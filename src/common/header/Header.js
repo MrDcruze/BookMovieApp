@@ -19,7 +19,7 @@ const Header = (props) => {
   const handleBookShowClick = () => {
     if (isLoggedIn) {
       //Navigate to book show page'
-      history.push('/book-show');
+      history.push(`/bookshow/${movieId}`);
     } else {
       toggleLogin();
     }
@@ -67,14 +67,19 @@ const Header = (props) => {
         }}
       />
       <div>
-        <Button
-          className="bk-book-show"
-          variant="contained"
-          color="primary"
-          onClick={handleBookShowClick}
-        >
-          Book Show
-        </Button>
+        {movieId ? (
+          <Button
+            className="bk-book-show"
+            variant="contained"
+            color="primary"
+            onClick={handleBookShowClick}
+          >
+            Book Show
+          </Button>
+        ) : (
+          ''
+        )}
+
         <Button
           variant="contained"
           name={isLoggedIn ? 'Logout' : 'Login'}

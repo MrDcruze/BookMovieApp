@@ -14,6 +14,11 @@
 .bk-movie-poster {
   width: 20%;
   padding-left: 24px;
+  padding-right: 24px;
+}
+
+.bk-movie-poster img {
+  max-width: 100%;
 }
 
 .bk-movie-container {

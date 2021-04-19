@@ -20,7 +20,7 @@ class Home extends Component {
 
   navigateToMovieDetails = (id) => {
     const { history } = this.props;
-    history.push(`movie-details/${id}`);
+    history.push(`movie/${id}`);
   };
 
   getMovies = (page, limit, isUpComing, customFilter) => {
@@ -55,7 +55,7 @@ class Home extends Component {
 
   componentDidMount() {
     this.getMovies(1, 6, true);
-    this.getMovies(1, 10);
+    this.getMovies(1, 20);
   }
 
   renderUpcomingMoviesList = () => {

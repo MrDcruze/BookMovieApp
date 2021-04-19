@@ -1,6 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import './Details.css';
-import { useParams } from 'react-router-dom';
 import Header from './../../common/header/Header';
 import Typography from '@material-ui/core/Typography';
 import YouTube from 'react-youtube';
@@ -11,12 +10,11 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 
 const MovieDetails = (props) => {
   const { baseUrl, history } = props;
-  const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState({});
   const rating = [1, 2, 3, 4, 5];
   const [selectedRating, setSelectedRating] = useState(0);
   const getMovieDetails = () => {
-    fetch(baseUrl + 'api/v1/movies/' + movieId, {
+    fetch(baseUrl + 'api/v1/movies/' + props.match.params.movieId, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -75,15 +73,15 @@ const MovieDetails = (props) => {
               <Typography className="movie-div" variant="body1">
                 <span className="movie-label">Genre:</span>
                 <span>
-                  {movieDetails['genres']
+                  {movieDetails['genres'] && movieDetails['genres'].length
                     ? movieDetails['genres'].join(',')
-                    : ''}
+                    : 'N/A'}
                 </span>
               </Typography>
               <Typography className="movie-div" variant="body1">
                 <span className="movie-label">Duration:</span>
                 <span>
-                  {movieDetails['duration'] ? movieDetails['duration'] : ''}
+                  {movieDetails['duration'] ? movieDetails['duration'] : 'N/A'}
                 </span>
               </Typography>
               <Typography className="movie-div" variant="body1">
@@ -91,13 +89,13 @@ const MovieDetails = (props) => {
                 <span>
                   {movieDetails['release_date']
                     ? movieDetails['release_date']
-                    : ''}
+                    : 'N/A'}
                 </span>
               </Typography>
               <Typography className="movie-div" variant="body1">
                 <span className="movie-label">Rating:</span>
                 <span>
-                  {movieDetails['rating'] ? movieDetails['rating'] : ''}
+                  {movieDetails['rating'] ? movieDetails['rating'] : 'N/A'}
                 </span>
               </Typography>
               <Typography className="movie-div plot" variant="body1">
@@ -112,7 +110,7 @@ const MovieDetails = (props) => {
                   )}
                 </span>
                 <span>
-                  {movieDetails['storyline'] ? movieDetails['storyline'] : ''}
+                  {movieDetails['storyline'] ? movieDetails['storyline'] : 'N/A'}
                 </span>
               </Typography>
               <Typography className="movie-div trailer" variant="body1">
