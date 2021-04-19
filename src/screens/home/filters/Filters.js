@@ -14,6 +14,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
+import './Filters.css';
 
 const styles = (theme) => ({
   content: {
@@ -40,6 +41,7 @@ const MenuProps = {
 };
 
 const Filters = (props) => {
+  const { classes, applyFilter, baseUrl } = props;
   const [genres, setGenres] = React.useState([]);
   const [artists, setArtists] = React.useState([]);
   const [movieName, setMovieName] = React.useState('');
@@ -47,7 +49,6 @@ const Filters = (props) => {
   const [suggestedArtists, setSuggestedArtists] = React.useState([]);
   const [releaseStartDate, setReleaseStartDate] = React.useState('');
   const [releaseEndDate, setReleaseEndDate] = React.useState('');
-  const { classes, applyFilter } = props;
 
   const handleChange = (event) => {
     setGenres(event.target.value);
@@ -60,7 +61,7 @@ const Filters = (props) => {
   const getGenres = () => {
     let page = 1;
     let limit = 20;
-    fetch('api/v1/genres?page=' + page + '&limit=' + limit, {
+    fetch(baseUrl + 'api/v1/genres?page=' + page + '&limit=' + limit, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -79,7 +80,7 @@ const Filters = (props) => {
   const getArtists = () => {
     let page = 1;
     let limit = 20;
-    fetch('api/v1/artists?page=' + page + '&limit=' + limit, {
+    fetch(baseUrl + 'api/v1/artists?page=' + page + '&limit=' + limit, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -95,16 +96,16 @@ const Filters = (props) => {
       });
   };
 
-  const handleFilterBtnSubmit =() =>{
+  const handleFilterBtnSubmit = () => {
     const reqObj = {
       title: movieName,
       start_date: releaseStartDate,
       end_date: releaseEndDate,
       genre: genres.length ? genres.join(',') : '',
       artists: artists.length ? artists.join(',') : '',
-    }
-    applyFilter(reqObj)
-  }
+    };
+    applyFilter(reqObj);
+  };
 
   useEffect(() => {
     getArtists();
@@ -137,7 +138,7 @@ const Filters = (props) => {
               renderValue={(selected) => selected.join(', ')}
               MenuProps={MenuProps}
             >
-              {suggestedGenres.map(item => (
+              {suggestedGenres.map((item) => (
                 <MenuItem key={item.id} value={item.genre}>
                   <Checkbox checked={genres.indexOf(item.genre) > -1} />
                   <ListItemText primary={item.genre} />

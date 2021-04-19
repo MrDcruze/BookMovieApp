@@ -6,6 +6,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridList from '@material-ui/core/GridList';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import Filters from './filters/Filters';
+import { withRouter } from 'react-router-dom';
 
 class Home extends Component {
   constructor() {
@@ -16,6 +17,12 @@ class Home extends Component {
       moviesCount: 0,
     };
   }
+
+  navigateToMovieDetails = (id) => {
+    const { history } = this.props;
+    history.push(`movie-details/${id}`);
+  };
+
   getMovies = (page, limit, isUpComing, customFilter) => {
     let url = 'api/v1/movies?page=' + page + '&limit=' + limit;
     if (customFilter && Object.keys(customFilter).length) {
@@ -23,7 +30,7 @@ class Home extends Component {
         url += '&' + key + '=' + customFilter[key];
       }
     }
-    fetch(url, {
+    fetch(this.props.baseUrl + url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -60,6 +67,7 @@ class Home extends Component {
               key={tile.poster_url}
               className="movie-title"
               rows={1.37}
+              onClick={() => this.navigateToMovieDetails(tile['id'])}
             >
               <img src={tile.poster_url} alt="movie poster" />
               <GridListTileBar
@@ -93,7 +101,10 @@ class Home extends Component {
           <div className="bk-movies-content">
             <GridList cellHeight={350} className="grid-list" cols={4}>
               {this.state.allMovies.map((tile) => (
-                <GridListTile key={tile.poster_url}>
+                <GridListTile
+                  key={tile.poster_url}
+                  onClick={() => this.navigateToMovieDetails(tile['id'])}
+                >
                   <img src={tile.poster_url} alt={tile.title} />
                   <GridListTileBar
                     title={tile.title}
@@ -104,7 +115,10 @@ class Home extends Component {
             </GridList>
           </div>
           <div className="bk-movies-filter">
-            <Filters applyFilter={this.filterMovies} />
+            <Filters
+              applyFilter={this.filterMovies}
+              baseUrl={this.props.baseUrl}
+            />
           </div>
         </div>
       </div>

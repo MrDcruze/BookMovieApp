@@ -3,11 +3,12 @@ import './Header.css';
 import CompanyLogo from '../../assets/logo.svg';
 import Button from '@material-ui/core/Button';
 import Login from './../login/Login';
-import { useHistory, history } from 'react-router-dom';
+import { useHistory, history, useParams } from 'react-router-dom';
 import { getAuthToken } from './../services/localStorageService';
 
 const Header = (props) => {
   let history = useHistory();
+  const { movieId } = useParams();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginDialogOpen, setLoginDialogOpen] = useState(false);
 
@@ -29,7 +30,7 @@ const Header = (props) => {
       toggleLogin();
       return;
     }
-    fetch('api/v1/auth/logout', {
+    fetch(props.baseUrl + 'api/v1/auth/logout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',

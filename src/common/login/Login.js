@@ -13,7 +13,7 @@ import { setAuthToken } from '../services/localStorageService';
 Modal.setAppElement('#root');
 
 const Login = (props) => {
-  let { isOpen, closeLogin, loggedInHandler } = props;
+  let { isOpen, closeLogin, loggedInHandler, baseUrl } = props;
   const [value, setValue] = useState(0);
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
@@ -51,7 +51,7 @@ const Login = (props) => {
     if (!userName || !password) {
       return;
     }
-    fetch('api/v1/auth/login', {
+    fetch(baseUrl + 'api/v1/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',
@@ -143,7 +143,7 @@ const Login = (props) => {
     if (hasError) {
       return;
     }
-    fetch('api/v1/signup', {
+    fetch(baseUrl + 'api/v1/signup', {
       method: 'POST',
       headers: {
         'Access-Control-Allow-Origin': '*',

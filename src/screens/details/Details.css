@@ -1,0 +1,52 @@
+.go-home {
+  margin: 8px 0px 0px 24px; 
+  height: 24px;
+}
+.go-home span {
+  cursor: pointer;
+  display: inline;
+}
+
+.bk-movie-content {
+  display: flex;
+}
+
+.bk-movie-poster {
+  width: 20%;
+  padding-left: 24px;
+}
+
+.bk-movie-container {
+  width: 60%;
+  padding-right: 20px;
+}
+
+.bk-additional-details {
+  width: 20%;
+  padding-right: 24px;
+}
+
+.movie-div {
+  font-size: 14px;
+}
+
+.movie-label, .bk-additional-details .rate-text, .bk-additional-details .artist-text {
+  font-weight: bold;
+}
+
+.movie-div.plot, .bk-additional-details .artist-text {
+  margin-top: 16px;
+}
+
+.movie-div.trailer {
+  font-weight: bold;
+  margin-top: 16px;
+}
+
+.star-rating {
+  cursor: pointer;
+}
+
+.star-rating.yellow {
+  fill: #ffff3d;
+}
